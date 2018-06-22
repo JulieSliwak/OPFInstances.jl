@@ -1,0 +1,19 @@
+language: julia
+os:
+  - linux
+julia:
+  - 0.6
+cache:
+ directories:
+   - /home/travis/.julia
+before_install:
+    # don't keep an old version of the code in the cache
+  - julia -e 'if "OPFInstances" in keys(Pkg.installed()) Pkg.rm("OPFInstances"); Pkg.rm("OPFInstances") end'
+  - julia -e 'Pkg.update()' #make sure we get the latest version of METADATA
+  - julia -e 'if !("Coverage" in keys(Pkg.installed())) Pkg.add("Coverage") end'
+script:
+  - if [[ -a .git/shallow ]]; then git fetch --unshallow; fi
+  - julia -e 'Pkg.clone(pwd())'
+  - julia -e 'Pkg.test("OPFInstances", coverage=true)'
+after_success:
+  - julia -e  'using Coverage; cd(Pkg.dir("OPFInstances")); LCOV.writefile("lcov.info", process_folder(".")); run(pipeline(`curl -s https://codecov.io/bash`, `bash`))'

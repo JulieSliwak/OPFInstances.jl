@@ -1,0 +1,9 @@
+Data set,Phase_0_Modified_IEEE14
+Nominal time,1.
+Nominal objective,90000.
+Time scale,5
+Constraint violation penalty scale,1000
+Time violation penalty scale,100
+Max infeasibility,1e-6
+Number of scenarios,100
+Number of power system network models,1
