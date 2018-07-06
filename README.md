@@ -6,9 +6,13 @@ Dev:
 
 The `OPFInstances` module allows for easily getting the absolute path of any instance stored in this archive. Curently, `Matpower` and `GOC` instances are included, and can respectively be found at the folders retruned by calling `getinstancepath`.
 
+*Installation* : `Pkg.clone("https://github.com/JulieSliwak/OPFInstances.jl.git")`
+
 **NOTE:** This repository will include a function call for building the vanilla ACOPF rectangular model as soon as the corresponding code will be available.
 
 ```julia
+using OPFInstances
+
 getinstancepath("Matpower", "m", "case9")       # ".../OPFInstances/instances/data_Matpower/matpower/case9.m"
 getinstancepath("Matpower", "QCQP", "case9")    # ".../OPFInstances/instances/data_Matpower/matpower_QCQP/case9.dat"
 
